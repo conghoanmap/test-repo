@@ -3,7 +3,7 @@ name: Deploy React Vite to Firebase
 on:
   push:
     branches:
-      - main  # chỉ chạy khi push lên nhánh main
+      - main # chỉ chạy khi push lên nhánh main
 
 jobs:
   build_and_deploy:
@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: "22.x"
 
       # 3. Cài dependencies và build
       - name: Install and Build
