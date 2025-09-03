@@ -1,0 +1,36 @@
+name: Deploy React Vite to Firebase
+
+on:
+  push:
+    branches:
+      - main  # chỉ chạy khi push lên nhánh main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Lấy code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 2. Cài Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3. Cài dependencies và build
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
+      # 4. Deploy lên Firebase Hosting
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          channelId: live
+          projectId: your-firebase-project-id
