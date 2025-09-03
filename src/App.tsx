@@ -5,6 +5,8 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  // Lấy VITE_HOAN_CODE
+  const hoanCode = import.meta.env.VITE_HOAN_CODE;
 
   return (
     <>
@@ -26,7 +28,7 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Lê Nguyễn Công Hoan
+        {hoanCode}
       </p>
     </>
   )
